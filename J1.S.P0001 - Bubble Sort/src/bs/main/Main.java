@@ -26,7 +26,7 @@ public class Main {
             utils.bubbleSort(arr);
 
             // continue or not
-            System.out.print("Do you want to continue (y/n)? ");
+            System.out.print("Do you want to continue (y/other)? ");
             cont = sc.nextLine();
         } while (cont.equalsIgnoreCase("y"));
     }
