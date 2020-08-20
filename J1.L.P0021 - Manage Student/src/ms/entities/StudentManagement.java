@@ -42,7 +42,7 @@ public class StudentManagement {
             if (iv.checkRegistered(list, studentID, studentName, semester, courseName)) {
                 list.add(new Student(studentID, studentName, semester, courseName));
                 count++;
-                System.out.println("Registered !!!");
+                System.out.println("Register Successful !!!");
                 return;
             } else {
                 System.err.println("Student already registered !!!");
@@ -99,7 +99,7 @@ public class StudentManagement {
     public void findAndSort(ArrayList<Student> list) {
         // check empty list
         if (list.isEmpty()) {
-            System.err.println("There is no student !!!");
+            System.out.println("There is no student !!!");
             return;
         }
 
@@ -119,7 +119,7 @@ public class StudentManagement {
     public void updateOrDelete(ArrayList<Student> list, int count) {
         // check empty list
         if (list.isEmpty()) {
-            System.err.println("There is no student !!!");
+            System.out.println("There is no student !!!");
             return;
         }
 
@@ -150,7 +150,7 @@ public class StudentManagement {
                             System.err.println("Nothing change !!!");
                         } else {
                             chosenStudent.setStudentName(newName);
-                            System.err.println("Change Name Successful !!!");
+                            System.out.println("Change Name Successful !!!");
                         }
                         break;
                     case 2:
@@ -161,7 +161,7 @@ public class StudentManagement {
                             System.err.println("Nothing change !!!");
                         } else {
                             chosenStudent.setStudentName(newSemester);
-                            System.err.println("Change Semester Successful !!!");
+                            System.out.println("Change Semester Successful !!!");
                         }
                         break;
                     case 3:
@@ -171,8 +171,8 @@ public class StudentManagement {
                         if (newCourseName.equalsIgnoreCase(chosenStudent.getCourseName())) {
                             System.err.println("Nothing change !!!");
                         } else {
-                            chosenStudent.setStudentName(newCourseName);
-                            System.err.println("Change Course Name Successful !!!");
+                            chosenStudent.setCourseName(newCourseName);
+                            System.out.println("Change Course Name Successful !!!");
                         }
                         break;
                     case 4:

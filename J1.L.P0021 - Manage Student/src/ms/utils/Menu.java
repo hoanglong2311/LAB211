@@ -14,6 +14,7 @@ public class Menu {
         System.out.println("3. Update/Delete");
         System.out.println("4. Report");
         System.out.println("5. Exit");
+        System.out.print("Your option: ");
     }
 
     // Change Student Info Menu
@@ -24,5 +25,6 @@ public class Menu {
         System.out.println("2. Change Semester");
         System.out.println("3. Change Course Name");
         System.out.println("4. Exit");
+        System.out.print("Your option: ");
     }
 }

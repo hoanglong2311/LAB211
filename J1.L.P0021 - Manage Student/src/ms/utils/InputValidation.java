@@ -93,11 +93,11 @@ public class InputValidation {
 
         while (true) {
             studentID = checkString();
-            if (!studentID.matches("^[SE]{2}[0-9]{5,6}")) {
+            if (!studentID.matches("^[SE,se]{2}[0-9]{5,6}")) {
                 System.err.println("Student ID Format: SE62917 or SE135678 !!!");
                 System.out.print("Enter ID: ");
             } else {
-                return studentID;
+                return studentID.toUpperCase();
             }
         }
     }
@@ -111,6 +111,9 @@ public class InputValidation {
             studentName = checkString();
             if (studentName.length() > 50) {
                 System.err.println("Student name is too long!");
+                System.out.print("Enter Name: ");
+            } else if (studentName.length() < 3) {
+                System.err.println("Student name is too short!");
                 System.out.print("Enter Name: ");
             } else if (!studentName.matches("[A-Za-z ]*")) {
                 System.err.println("Student Name contains only alphabet and 1 white space after each word!");
@@ -139,8 +142,8 @@ public class InputValidation {
 
         while (true) {
             semester = sc.nextLine().trim();
-            if (!semester.matches("^[1-9]{1}")) {
-                System.err.println("Semester must from 1 to 9");
+            if (!semester.matches("^[SP,SU,FA]{2}[1-2]{1}[0-9]{1}")) {
+                System.err.println("Semester format: SP20 or SU20 or FA20 !!!");
                 System.out.print("Enter Semester: ");
             } else {
                 return semester;
@@ -155,7 +158,7 @@ public class InputValidation {
             if (courseName.equalsIgnoreCase("java")
                     || courseName.equalsIgnoreCase(".net")
                     || courseName.equalsIgnoreCase("c/c++")) {
-                return courseName;
+                return courseName.toUpperCase();
             } else {
                 System.err.println("There are only three courses: Java, .Net, C/C++");
                 System.out.print("Enter Course: ");
