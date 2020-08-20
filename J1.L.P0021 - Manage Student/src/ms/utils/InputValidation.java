@@ -68,6 +68,23 @@ public class InputValidation {
         }
     }
 
+    // check user Update or Delete option (U/D)
+    public boolean checkUpdateDelete() {
+        while (true) {
+            String option = checkString();
+            // update option
+            if (option.equalsIgnoreCase("U")) {
+                return true;
+            }
+            // delete option
+            if (option.equalsIgnoreCase("D")) {
+                return false;
+            }
+            System.err.println("Input (U) to Update or (D) to Delete !!!");
+            System.out.print("Do you want to update (U) or delete (D) student? ");
+        }
+    }
+
     // check student ID format
     public String checkStudentID() {
         // declare

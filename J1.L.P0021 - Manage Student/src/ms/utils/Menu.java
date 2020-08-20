@@ -15,4 +15,14 @@ public class Menu {
         System.out.println("4. Report");
         System.out.println("5. Exit");
     }
+
+    // Change Student Info Menu
+    // Choose which student information want to change
+    // name / semester / course name
+    public void changeStudentInfoMenu() {
+        System.out.println("1. Change Student Name");
+        System.out.println("2. Change Semester");
+        System.out.println("3. Change Course Name");
+        System.out.println("4. Exit");
+    }
 }
