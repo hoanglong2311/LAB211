@@ -115,16 +115,19 @@ public class InputValidation {
             } else if (studentName.length() < 3) {
                 System.err.println("Student name is too short!");
                 System.out.print("Enter Name: ");
-            } else if (!studentName.matches("[A-Za-z ]*")) {
+            } else if (!studentName.matches("([A-Za-z]+\\s?)*")) {
                 System.err.println("Student Name contains only alphabet and 1 white space after each word!");
+                System.out.print("Enter Name: ");
+            } else if (studentName.matches("^[A-Za-z ]*(.)\\1\\1[A-Za-z ]*$")) {
+                System.err.println("A character must not repeat 3 times!");
                 System.out.print("Enter Name: ");
             } else {
                 return studentName;
             }
         }
     }
-
     // check student Existence
+
     public boolean checkStudentExistence(ArrayList<Student> list, String studentID, String studentName) {
         for (Student student : list) {
             if (studentID.equalsIgnoreCase(student.getId())
