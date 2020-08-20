@@ -160,7 +160,7 @@ public class StudentManagement {
                         if (newSemester.equalsIgnoreCase(chosenStudent.getSemester())) {
                             System.err.println("Nothing change !!!");
                         } else {
-                            chosenStudent.setStudentName(newSemester);
+                            chosenStudent.setSemester(newSemester);
                             System.out.println("Change Semester Successful !!!");
                         }
                         break;
