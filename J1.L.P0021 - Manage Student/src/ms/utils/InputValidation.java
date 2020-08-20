@@ -2,6 +2,7 @@ package ms.utils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import ms.entities.Report;
 import ms.entities.Student;
 
 /**
@@ -169,6 +170,18 @@ public class InputValidation {
                     && studentName.equalsIgnoreCase(student.getStudentName())
                     && semester.equalsIgnoreCase(student.getSemester())
                     && courseName.equalsIgnoreCase(student.getCourseName())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // check report Existence
+    public boolean checkReportExistence(ArrayList<Report> list, String studentName, String courseName, int totalLearnTime) {
+        for (Report report : list) {
+            if (studentName.equalsIgnoreCase(report.getStudentName())
+                    && courseName.equalsIgnoreCase(report.getCourseName())
+                    && totalLearnTime == report.getTotalCourse()) {
                 return false;
             }
         }
