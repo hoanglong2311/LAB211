@@ -160,8 +160,12 @@ public class StudentManagement {
                         if (newSemester.equalsIgnoreCase(chosenStudent.getSemester())) {
                             System.err.println("Nothing change !!!");
                         } else {
-                            chosenStudent.setSemester(newSemester);
-                            System.out.println("Change Semester Successful !!!");
+                            if (iv.checkRegistered(list, chosenStudent.getId(), chosenStudent.getStudentName(), newSemester, chosenStudent.getCourseName())) {
+                                chosenStudent.setSemester(newSemester);
+                                System.out.println("Change Semester Successful !!!");
+                            } else {
+                                System.err.println("Already Registered !!!");
+                            }
                         }
                         break;
                     case 3:
@@ -171,8 +175,12 @@ public class StudentManagement {
                         if (newCourseName.equalsIgnoreCase(chosenStudent.getCourseName())) {
                             System.err.println("Nothing change !!!");
                         } else {
-                            chosenStudent.setCourseName(newCourseName);
-                            System.out.println("Change Course Name Successful !!!");
+                            if (iv.checkRegistered(list, chosenStudent.getId(), chosenStudent.getStudentName(), chosenStudent.getSemester(), newCourseName)) {
+                                chosenStudent.setCourseName(newCourseName);
+                                System.out.println("Change Course Name Successful !!!");
+                            } else {
+                                System.err.println("Already Registered !!!");
+                            }
                         }
                         break;
                     case 4:
