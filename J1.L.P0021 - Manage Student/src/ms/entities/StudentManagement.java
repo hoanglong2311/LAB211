@@ -186,12 +186,10 @@ public class StudentManagement {
                     case 4:
                         return;
                 }
-                return;
             } else {
                 list.remove(chosenStudent);
                 count--;
                 System.err.println("Delete Student Successful !!!");
-                return;
             }
         }
     }

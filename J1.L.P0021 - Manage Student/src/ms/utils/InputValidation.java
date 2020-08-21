@@ -126,8 +126,8 @@ public class InputValidation {
             }
         }
     }
-    // check student Existence
 
+    // check student Existence
     public boolean checkStudentExistence(ArrayList<Student> list, String studentID, String studentName) {
         for (Student student : list) {
             if (studentID.equalsIgnoreCase(student.getId())
