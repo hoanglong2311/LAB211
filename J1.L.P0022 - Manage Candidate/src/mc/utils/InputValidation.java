@@ -252,4 +252,37 @@ public class InputValidation {
             }
         }
     }
+
+    // check input Major
+    public String checkMajor() {
+        while (true) {
+            String major = checkEmptyString();
+            if (major.length() > 20) {
+                System.err.println("Name is too long");
+                System.out.print("Enter Major: ");
+            } else if (!major.matches("^[A-Za-z]")) {
+                System.err.println("Name contains only alphabet");
+                System.out.print("Enter Major: ");
+            } else if (major.matches("^[A-Za-z]*(.)\\1\\1$")) {
+                System.err.println("A character must not repeat 3 times");
+                System.out.print("Enter Major: ");
+            } else {
+                return major;
+            }
+        }
+    }
+
+    // check input Semester
+    public String checkSemester() {
+
+        while (true) {
+            String semester = checkEmptyString();
+            if (!semester.matches("^[SP,SU,FA]{2}[1-2]{1}[0-9]{1}")) {
+                System.err.println("Semester format: SP20 or SU20 or FA20 !!!");
+                System.out.print("Enter Semester: ");
+            } else {
+                return semester;
+            }
+        }
+    }
 }

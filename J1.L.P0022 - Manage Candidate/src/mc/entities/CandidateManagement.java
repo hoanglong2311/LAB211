@@ -14,6 +14,8 @@ public class CandidateManagement {
     Scanner sc = new Scanner(System.in);
     InputValidation iv = new InputValidation();
     ExperienceManagement em = new ExperienceManagement();
+    FresherManagement fm = new FresherManagement();
+    InternshipManagement im = new InternshipManagement();
 
     // Create Candidate
     public void createCandidate(ArrayList<Candidate> candidateList, int candidateType) {
@@ -40,12 +42,58 @@ public class CandidateManagement {
                     em.createExperience(candidateList, newCandidate);
                     break;
                 case 1:
+                    fm.createFresher(candidateList, newCandidate);
                     break;
                 case 2:
+                    im.createInternship(candidateList, newCandidate);
                     break;
             }
         } else {
             return;
+        }
+    }
+
+    // Display All Candidate
+    public void displayAll(ArrayList<Candidate> candidateList) {
+        // Experience
+        System.out.println("--- Experience Candidate ---");
+        for (Candidate candidate : candidateList) {
+            if (candidate.getCandidateType() == 0) {
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
+            }
+        }
+
+        // Fresher
+        System.out.println("--- Fresher Candidate ---");
+        for (Candidate candidate : candidateList) {
+            if (candidate.getCandidateType() == 1) {
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
+            }
+        }
+
+        // Internship
+        System.out.println("--- Internship Candidate ---");
+        for (Candidate candidate : candidateList) {
+            if (candidate.getCandidateType() == 2) {
+                System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
+            }
+        }
+    }
+
+    // Search Candidate
+    // By First Name/Last Name
+    public void searchCandidate(ArrayList<Candidate> candidateList) {
+        displayAll(candidateList);
+        System.out.print("Enter Name to Search: ");
+        String searchName = iv.checkName();
+        System.out.print("Enter Candidate Type: ");
+        int candidateType = iv.validateMenuOption(0, 2);
+        for (Candidate candidate : candidateList) {
+            if (candidate.getCandidateType() == candidateType
+                    && (candidate.getFirstName().contains(searchName)
+                    || candidate.getLastName().contains(searchName))) {
+                System.out.println(candidate.toString());
+            }
         }
     }
 }
