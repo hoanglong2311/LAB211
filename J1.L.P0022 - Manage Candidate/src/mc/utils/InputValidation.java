@@ -72,10 +72,10 @@ public class InputValidation {
             if (name.length() > 15) {
                 System.err.println("Name is too long");
                 System.out.print("Enter Name: ");
-            } else if (!name.matches("[A-Za-z]*")) {
+            } else if (!name.matches("[A-Za-z ]*")) {
                 System.err.println("Name contains only alphabet");
                 System.out.print("Enter Name: ");
-            } else if (name.matches("^[A-Za-z]*(.)\\1\\1$")) {
+            } else if (name.matches("^[A-Za-z ]*(.)\\1\\1$")) {
                 System.err.println("A character must not repeat 3 times");
                 System.out.print("Enter Name: ");
             } else {
@@ -111,7 +111,7 @@ public class InputValidation {
             } else if (address.length() < 3) {
                 System.err.println("Address is too short!");
                 System.out.print("Enter Address: ");
-            } else if (!address.matches("([A-Za-z0-9]+\\s?)*")) {
+            } else if (!address.matches("([A-Za-z0-9 ]+\\s?)*")) {
                 System.err.println("Address contains alphabet, number and 1 white space after each word!");
                 System.out.print("Enter Address: ");
             } else if (address.matches("^[A-Za-z0-9 ]*(.)\\1\\1[A-Za-z0-9 ]*$")) {
@@ -176,10 +176,10 @@ public class InputValidation {
             if (proSkill.length() > 30) {
                 System.err.println("Skill name is too long");
                 System.out.print("Enter Professional Skill: ");
-            } else if (!proSkill.matches("^[A-Za-z]*")) {
+            } else if (!proSkill.matches("^[A-Za-z ]*")) {
                 System.err.println("Skill name contains only alphabet");
                 System.out.print("Enter Professional Skill: ");
-            } else if (proSkill.matches("^[A-Za-z]*(.)\\1\\1$")) {
+            } else if (proSkill.matches("^[A-Za-z ]*(.)\\1\\1$")) {
                 System.err.println("A character must not repeat 3 times");
                 System.out.print("Enter Professional Skill: ");
             } else {
@@ -264,10 +264,10 @@ public class InputValidation {
             if (major.length() > 20) {
                 System.err.println("Name is too long");
                 System.out.print("Enter Major: ");
-            } else if (!major.matches("^[A-Za-z]*")) {
+            } else if (!major.matches("^[A-Za-z ]*")) {
                 System.err.println("Name contains only alphabet");
                 System.out.print("Enter Major: ");
-            } else if (major.matches("^[A-Za-z]*(.)\\1\\1$")) {
+            } else if (major.matches("^[A-Za-z ]*(.)\\1\\1$")) {
                 System.err.println("A character must not repeat 3 times");
                 System.out.print("Enter Major: ");
             } else {
