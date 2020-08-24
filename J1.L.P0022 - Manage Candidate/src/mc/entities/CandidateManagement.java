@@ -83,6 +83,9 @@ public class CandidateManagement {
     // Search Candidate
     // By First Name/Last Name
     public void searchCandidate(ArrayList<Candidate> candidateList) {
+        // declare
+        boolean foundFlag = false;
+
         // check empty list
         if (candidateList.isEmpty()) {
             System.out.println("There is no candidate");
@@ -97,9 +100,11 @@ public class CandidateManagement {
                         && (candidate.getFirstName().toLowerCase().contains(searchName.toLowerCase())
                         || candidate.getLastName().toLowerCase().contains(searchName.toLowerCase()))) {
                     System.out.println(candidate.toString());
-                } else {
-                    System.out.println("Candidate Not Found");
+                    foundFlag = true;
                 }
+            }
+            if (foundFlag == false) {
+                System.out.println("Candidate Not Found");
             }
         }
     }
