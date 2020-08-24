@@ -29,6 +29,6 @@ public class FresherManagement {
                 fre_candi.getLastName(), fre_candi.getBirthYear(),
                 fre_candi.getAddress(), fre_candi.getPhone(),
                 fre_candi.getEmail(), fre_candi.getCandidateType()));
-        System.out.println("--- Create Fresher Candidate Successful ---");
+        System.out.println("--> Create Fresher Candidate Successful");
     }
 }

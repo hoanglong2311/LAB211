@@ -15,7 +15,7 @@ public class InputValidation {
     Scanner sc = new Scanner(System.in);
     int currentYear = Calendar.getInstance().get(Calendar.YEAR);
     private static final String EMAIL_VALID = "^[a-zA-Z0-9._]+[@]{1}+[a-zA-Z0-9]+[.]{1}+([a-zA-Z0-9]+[.]{1})*+[a-zA-Z0-9]+$";
-    private static final String GRADUATION_VALID = "^(0[1-9]|1[0-2])/[19]{2}[0-9]{2}$";
+    private static final String GRADUATION_VALID = "^(0[1-9]|1[0-2])/[19,20]{2}[0-9]{2}$";
 
     // check input option menu
     public int validateMenuOption(int firstOption, int lastOption) {
@@ -56,8 +56,8 @@ public class InputValidation {
     public String checkCandidateID() {
         while (true) {
             String candidateID = checkEmptyString();
-            if (!candidateID.matches("^[EX,ex,FR,fr,IN,in]{2}[0-9]{5}")) {
-                System.err.println("Candidate ID format: EX/FR/IN12345");
+            if (!candidateID.matches("^[CA,ca]{2}[0-9]{3}")) {
+                System.err.println("Candidate ID format: CAxxx (x from 0 to 9)");
                 System.out.print("Enter ID: ");
             } else {
                 return candidateID.toUpperCase();
@@ -72,7 +72,7 @@ public class InputValidation {
             if (name.length() > 15) {
                 System.err.println("Name is too long");
                 System.out.print("Enter Name: ");
-            } else if (!name.matches("^[A-Za-z]")) {
+            } else if (!name.matches("[A-Za-z]*")) {
                 System.err.println("Name contains only alphabet");
                 System.out.print("Enter Name: ");
             } else if (name.matches("^[A-Za-z]*(.)\\1\\1$")) {
@@ -157,7 +157,7 @@ public class InputValidation {
                 int expInYear = Integer.parseInt(sc.nextLine().trim());
                 if (expInYear < 0 || expInYear > 100) {
                     throw new NumberFormatException();
-                } else if (expInYear > age) {
+                } else if (expInYear >= age) {
                     throw new NumberFormatException();
                 } else {
                     return expInYear;
@@ -176,7 +176,7 @@ public class InputValidation {
             if (proSkill.length() > 30) {
                 System.err.println("Skill name is too long");
                 System.out.print("Enter Professional Skill: ");
-            } else if (!proSkill.matches("^[A-Za-z]")) {
+            } else if (!proSkill.matches("^[A-Za-z]*")) {
                 System.err.println("Skill name contains only alphabet");
                 System.out.print("Enter Professional Skill: ");
             } else if (proSkill.matches("^[A-Za-z]*(.)\\1\\1$")) {
@@ -203,16 +203,20 @@ public class InputValidation {
     // format mm/yyyy
     public String checkGraduationDate(Candidate candidate) {
         while (true) {
-            String graduation_date = checkEmptyString();
-            int graduation_year = Integer.parseInt(graduation_date.substring(3, 6));
-            if (!graduation_date.matches(GRADUATION_VALID)) {
+            try {
+                String graduation_date = checkEmptyString();
+                String graduation_year = graduation_date.substring(3, 7);
+                if (!graduation_date.matches(GRADUATION_VALID)) {
+                    throw new Exception();
+                } else if (Integer.parseInt(graduation_year) <= candidate.getBirthYear()) {
+                    System.err.println("Graduate before Birthdate");
+                    throw new Exception();
+                } else {
+                    return graduation_date;
+                }
+            } catch (Exception e) {
                 System.err.println("Format: mm/yyyy");
                 System.out.print("Enter Graduation Time: ");
-            } else if (graduation_year < candidate.getBirthYear()) {
-                System.err.println("Graduate before Birthdate");
-                System.out.print("Enter Graduation Time: ");
-            } else {
-                return graduation_date;
             }
         }
     }
@@ -241,10 +245,10 @@ public class InputValidation {
             if (university.length() > 60) {
                 System.err.println("Name is too long");
                 System.out.print("Enter University: ");
-            } else if (!university.matches("^[A-Za-z]")) {
+            } else if (!university.matches("^[A-Za-z ]*")) {
                 System.err.println("Name contains only alphabet");
                 System.out.print("Enter University: ");
-            } else if (university.matches("^[A-Za-z]*(.)\\1\\1$")) {
+            } else if (university.matches("^[A-Za-z ]*(.)\\1\\1$")) {
                 System.err.println("A character must not repeat 3 times");
                 System.out.print("Enter University: ");
             } else {
@@ -260,7 +264,7 @@ public class InputValidation {
             if (major.length() > 20) {
                 System.err.println("Name is too long");
                 System.out.print("Enter Major: ");
-            } else if (!major.matches("^[A-Za-z]")) {
+            } else if (!major.matches("^[A-Za-z]*")) {
                 System.err.println("Name contains only alphabet");
                 System.out.print("Enter Major: ");
             } else if (major.matches("^[A-Za-z]*(.)\\1\\1$")) {
@@ -274,7 +278,6 @@ public class InputValidation {
 
     // check input Semester
     public String checkSemester() {
-
         while (true) {
             String semester = checkEmptyString();
             if (!semester.matches("^[SP,SU,FA]{2}[1-2]{1}[0-9]{1}")) {

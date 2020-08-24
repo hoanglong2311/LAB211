@@ -83,16 +83,23 @@ public class CandidateManagement {
     // Search Candidate
     // By First Name/Last Name
     public void searchCandidate(ArrayList<Candidate> candidateList) {
-        displayAll(candidateList);
-        System.out.print("Enter Name to Search: ");
-        String searchName = iv.checkName();
-        System.out.print("Enter Candidate Type: ");
-        int candidateType = iv.validateMenuOption(0, 2);
-        for (Candidate candidate : candidateList) {
-            if (candidate.getCandidateType() == candidateType
-                    && (candidate.getFirstName().contains(searchName)
-                    || candidate.getLastName().contains(searchName))) {
-                System.out.println(candidate.toString());
+        // check empty list
+        if (candidateList.isEmpty()) {
+            System.out.println("There is no candidate");
+        } else {
+            displayAll(candidateList);
+            System.out.print("Enter Name to Search: ");
+            String searchName = iv.checkName();
+            System.out.print("Enter Candidate Type (Experience - 0, Fresher - 1, Internship - 2): ");
+            int candidateType = iv.validateMenuOption(0, 2);
+            for (Candidate candidate : candidateList) {
+                if (candidate.getCandidateType() == candidateType
+                        && (candidate.getFirstName().toLowerCase().contains(searchName.toLowerCase())
+                        || candidate.getLastName().toLowerCase().contains(searchName.toLowerCase()))) {
+                    System.out.println(candidate.toString());
+                } else {
+                    System.out.println("Candidate Not Found");
+                }
             }
         }
     }

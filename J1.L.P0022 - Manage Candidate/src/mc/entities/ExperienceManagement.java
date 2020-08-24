@@ -27,6 +27,6 @@ public class ExperienceManagement {
                 exp_candi.getBirthYear(), exp_candi.getAddress(),
                 exp_candi.getPhone(), exp_candi.getEmail(),
                 exp_candi.getCandidateType()));
-        System.out.println("--- Create Experience Candidate Successful ---");
+        System.out.println("--> Create Experience Candidate Successful");
     }
 }

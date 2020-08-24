@@ -29,6 +29,6 @@ public class InternshipManagement {
                 int_candi.getLastName(), int_candi.getBirthYear(),
                 int_candi.getAddress(), int_candi.getPhone(),
                 int_candi.getEmail(), int_candi.getCandidateType()));
-        System.out.println("--- Create Internship Candidate Successful ---");
+        System.out.println("--> Create Internship Candidate Successful");
     }
 }
