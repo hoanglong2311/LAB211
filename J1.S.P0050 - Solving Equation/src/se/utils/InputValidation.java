@@ -53,11 +53,7 @@ public class InputValidation {
 
     // check whether a number is even or not
     public boolean isEven(double inputNumber) {
-        if (inputNumber == 0) {
-        } else {
-            return inputNumber % 2 == 0;
-        }
-        return false;
+        return inputNumber % 2 == 0;
     }
 
     // check whether a number is square number or not
