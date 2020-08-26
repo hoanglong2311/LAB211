@@ -161,19 +161,19 @@ public class FruitManagement {
                 orderList.add(new Order(chosenFruit.getFruitID(),
                         chosenFruit.getFruitName(),
                         chosenFruit.getPrice(),
-                        chosenFruit.getQuantity()));
+                        quantity));
             }
             // customer choose continue or not
             if (!iv.checkContinue()) {
-                // display final order
-                displayOrderList(orderList);
-                // require customer name to add to order table
-                System.out.print("Enter Your Name: ");
-                String cusName = iv.checkCustomerName();
-                orderTable.put(cusName, orderList);
-                System.out.println("---> Shopping Successful");
-                return;
+                break;
             }
         }
+        // display final order
+        displayOrderList(orderList);
+        // require customer name to add to order table
+        System.out.print("Enter Your Name: ");
+        String cusName = iv.checkCustomerName();
+        orderTable.put(cusName, orderList);
+        System.out.println("---> Shopping Successful");
     }
 }
