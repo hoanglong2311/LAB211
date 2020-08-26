@@ -102,7 +102,7 @@ public class FruitManagement {
         for (Fruit fruit : fruitList) {
             // check whether item is available or not
             if (fruit.getQuantity() != 0) {
-                System.out.printf("%5s|%15s|%15s|%7.0f$\n",
+                System.out.printf("%5s|%15s|%15s|%7.1f$\n",
                         count++,
                         fruit.getFruitName(),
                         fruit.getOrigin(),
@@ -139,41 +139,40 @@ public class FruitManagement {
 
     // shopping
     public void shopping(ArrayList<Fruit> fruitList, Hashtable<String, ArrayList<Order>> orderTable) {
-        // check Fruit List empty or not
         if (fruitList.isEmpty()) {
             System.err.println("Empty Store");
             return;
-        }
-        // start buying fruit until user choose "N"(No) continue option
-        ArrayList<Order> orderList = new ArrayList<>();
-        while (true) {
-            displayFruitList(fruitList);
-            System.out.print("Enter Item Number: ");
-            int itemNo = iv.validateMenuOption(1, fruitList.size());
-            Fruit chosenFruit = getFruitByItemNo(fruitList, itemNo);
-            System.out.print("Enter Fruit Quantity: ");
-            int quantity = iv.checkAvailableItem(chosenFruit.getQuantity());
-            chosenFruit.setQuantity(chosenFruit.getQuantity() - quantity);
+        } else {
+            ArrayList<Order> orderList = new ArrayList<>();
+            while (true) {
+                displayFruitList(fruitList);
+                System.out.print("Enter item number: ");
+                int itemNo = iv.validateMenuOption(1, fruitList.size());
+                Fruit chosenFruit = getFruitByItemNo(fruitList, itemNo);
+                System.out.println("Chose: " + chosenFruit.getFruitName());
+                System.out.print("Enter quantity: ");
+                int quantity = iv.checkAvailableItem(chosenFruit.getQuantity());
+                chosenFruit.setQuantity(chosenFruit.getQuantity() - quantity);
+                if (chosenFruit.getQuantity() == 0) {
+                    fruitList.remove(chosenFruit);
+                }
 
-            if (iv.checkItemExistence(orderList, chosenFruit.getFruitID())) {
-                updateOrder(orderList, chosenFruit.getFruitID(), quantity);
-            } else {
-                orderList.add(new Order(chosenFruit.getFruitID(),
-                        chosenFruit.getFruitName(),
-                        chosenFruit.getPrice(),
-                        quantity));
+                if (iv.checkItemExistence(orderList, chosenFruit.getFruitID())) {
+                    updateOrder(orderList, chosenFruit.getFruitID(), quantity);
+                } else {
+                    orderList.add(new Order(chosenFruit.getFruitID(), chosenFruit.getFruitName(), chosenFruit.getPrice(), quantity));
+                }
+
+                if (!iv.checkContinue()) {
+                    break;
+                }
             }
-            // customer choose continue or not
-            if (!iv.checkContinue()) {
-                break;
-            }
+            displayOrderList(orderList);
+            System.out.print("Enter customer name: ");
+            String cusName = iv.checkCustomerName();
+            orderTable.put(cusName, orderList);
+            System.out.println("---> Shopping Successful");
         }
-        // display final order
-        displayOrderList(orderList);
-        // require customer name to add to order table
-        System.out.print("Enter Your Name: ");
-        String cusName = iv.checkCustomerName();
-        orderTable.put(cusName, orderList);
-        System.out.println("---> Shopping Successful");
+
     }
 }

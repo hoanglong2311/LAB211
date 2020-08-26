@@ -205,8 +205,6 @@ public class InputValidation {
                 int quantity = Integer.parseInt(sc.nextLine().trim());
                 if (quantity > quantityLeft) {
                     throw new NumberFormatException();
-                } else if (quantity == 0) {
-                    throw new NumberFormatException();
                 } else {
                     return quantity;
                 }
